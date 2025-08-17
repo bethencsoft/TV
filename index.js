@@ -10,7 +10,7 @@ app.get("/proxy", async (req, res) => {
   
   try {
     const response = await fetch(fileUrl);
-    if (!response.ok) throw new Error("Error descargando el archivo: " + response);
+    if (!response.ok) throw new Error("Error descargando el archivo: " + response.text() + ":" + response.status);
     
     res.setHeader("Content-Type", response.headers.get("content-type") || "application/octet-stream");
     res.setHeader("Content-Disposition", "attachment; filename=archivo.dat");
